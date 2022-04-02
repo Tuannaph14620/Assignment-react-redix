@@ -1,55 +1,44 @@
-import React from 'react'
 
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { listCategory, removeCategory } from '../../../features/categorySlice'
 const ListCategory = () => {
+  
+  const category = useSelector(data => data.category.value)
+
+  useEffect(() => {
+  dispatch(listCategory())
+  }, []);
+
+  const dispatch = useDispatch()
   return (
-    <div className="col-lg-11 grid-margin stretch-card">
+    <div className="col-lg-10 grid-margin stretch-card">
   <div className="card">
     <div className="card-body">
-      <h4 className="card-title">Hoverable Table</h4>
-      <p className="card-description">
-        Add class <code>.table-hover</code>
-      </p>
+      <h4 className="card-title">Danh sách danh mục sản phẩm</h4>
       <div className="table-responsive">
         <table className="table table-hover">
           <thead>
             <tr>
-              <th>User</th>
-              <th>Product</th>
-              <th>Sale</th>
-              <th>Status</th>
+              <th>STT</th>
+              <th>Tên danh mục</th>
+              <th></th>
+              
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Jacob</td>
-              <td>Photoshop</td>
-              <td className="text-danger"> 28.76% <i className="ti-arrow-down" /></td>
-              <td><label className="badge badge-danger">Pending</label></td>
+            {category?.map((item, index)=>{
+              return <tr key={index} >
+              <td> {index +1}</td>
+              <td>{item.nameCate}</td>
+              <td>
+                <button className='btn btn-danger' onClick={()=>dispatch(removeCategory(item.id))}>Remove</button>
+                <a href=''>Edit</a>
+                
+              </td>
             </tr>
-            <tr>
-              <td>Messsy</td>
-              <td>Flash</td>
-              <td className="text-danger"> 21.06% <i className="ti-arrow-down" /></td>
-              <td><label className="badge badge-warning">In progress</label></td>
-            </tr>
-            <tr>
-              <td>John</td>
-              <td>Premier</td>
-              <td className="text-danger"> 35.00% <i className="ti-arrow-down" /></td>
-              <td><label className="badge badge-info">Fixed</label></td>
-            </tr>
-            <tr>
-              <td>Peter</td>
-              <td>After effects</td>
-              <td className="text-success"> 82.00% <i className="ti-arrow-up" /></td>
-              <td><label className="badge badge-success">Completed</label></td>
-            </tr>
-            <tr>
-              <td>Dave</td>
-              <td>53275535</td>
-              <td className="text-success"> 98.05% <i className="ti-arrow-up" /></td>
-              <td><label className="badge badge-warning">In progress</label></td>
-            </tr>
+            })}
+            
           </tbody>
         </table>
       </div>

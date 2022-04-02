@@ -10,5 +10,11 @@
       "price": "22222",
       "id": 3
     }
+  ],
+  "categories": [
+    {
+      "nameCate": "sdsdf",
+      "id": 1
+    }
   ]
 }
