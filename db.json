@@ -1,20 +1,34 @@
 {
   "products": [
     {
-      "id": 2,
-      "name": "Product C",
-      "price": 5000
+      "name": "Nguyễn Anh Tuấn",
+      "price": "1950000",
+      "quantity": "44",
+      "createdAt": "2022-03-28",
+      "categoryId": "3",
+      "id": 1
     },
     {
-      "name": "sdcvvvdvd",
-      "price": "22222",
+      "name": "Manchester City Pre-Match Jacket",
+      "price": "2350000",
+      "quantity": "1",
+      "createdAt": "2022-04-02",
+      "categoryId": "2",
       "id": 3
     }
   ],
   "categories": [
     {
-      "nameCate": "sdsdf",
+      "nameCate": "Trang phục sân nhà",
       "id": 1
+    },
+    {
+      "nameCate": "Trang phục sân khách",
+      "id": 2
+    },
+    {
+      "nameCate": "Trang phục sân tập",
+      "id": 3
     }
   ]
 }

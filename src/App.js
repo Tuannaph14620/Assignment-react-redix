@@ -5,6 +5,8 @@ import WebsiteLayout from './components/layouts/WebsiteLayout';
 import AdminLayout from './components/layouts/AdminLayout';
 import ListCategory from './pages/Admin/Category/list';
 import AddCategory from './pages/Admin/Category/AddCategory';
+import ProductList from './pages/Admin/Product/ProductList';
+import AddProduct from './pages/Admin/Product/AddProduct';
 function App() {
   return (
     <div className="App">
@@ -20,7 +22,8 @@ function App() {
             <Route path='add' element={<AddCategory/>}/>
           </Route>
           <Route path='product'>
-            <Route index element={<h1>ProductPage</h1>}/>
+            <Route index element={<ProductList/>}/>
+            <Route path='add' element={<AddProduct/>}/>
           </Route>
         </Route>
       </Routes>

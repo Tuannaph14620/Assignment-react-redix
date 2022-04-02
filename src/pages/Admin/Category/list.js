@@ -5,12 +5,12 @@ import { listCategory, removeCategory } from '../../../features/categorySlice'
 const ListCategory = () => {
   
   const category = useSelector(data => data.category.value)
-
+  const dispatch = useDispatch()
   useEffect(() => {
   dispatch(listCategory())
   }, []);
 
-  const dispatch = useDispatch()
+
   return (
     <div className="col-lg-10 grid-margin stretch-card">
   <div className="card">
