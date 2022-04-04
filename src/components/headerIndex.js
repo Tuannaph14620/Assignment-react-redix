@@ -11,7 +11,7 @@ const HeaderIndex = () => {
           <p className="pl-5 font-bold text-xl text-white">ManCity Shop</p>
         </div>
         <div className="account">
-          <a href="/login">Sign in</a>
+          <NavLink to="/signin">Sign in</NavLink>
         </div>
       </div>  
       <Navbar/>
