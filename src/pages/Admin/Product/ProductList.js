@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { listProducts, removeProducts } from '../../../features/productSlice'
 const ProductList = () => {
 
@@ -36,7 +37,7 @@ const ProductList = () => {
               <th>
                 Ngày nhập hàng
               </th>
-              <th></th>
+              <th>Hành động</th>
             </tr>
           </thead>
           <tbody>
@@ -46,7 +47,7 @@ const ProductList = () => {
                     {index +1}
                   </td>
                   <td>
-                      {item.categoryId === 1 ? "Trang phục sân nhà" : item.categoryId === 2 ? "Trang phục sân khách" : "Trang phục sân tập" }
+                      {item.categoryId === "1" ? "Trang phục sân nhà" : item.categoryId === "2" ? "Trang phục sân khách" : "Trang phục sân tập" }
                   </td>
                   <td>
                     {item.name}
@@ -61,6 +62,7 @@ const ProductList = () => {
                     {item.createdAt}
                   </td>
                   <td>
+                      <NavLink className='btn btn-primary mr-2' to={`/admin/product/${item.id}/edit`}>Update</NavLink>
                       <button onClick={()=>{dispatch(removeProducts(item.id))}} className='btn btn-danger'>Remove</button>
                   </td>
                 </tr>

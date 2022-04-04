@@ -1,36 +1,44 @@
+import { data } from 'autoprefixer';
 import React, { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import {useParams } from 'react-router-dom';
+import { listOneProduct } from '../../../api/product';
+import { listCategory } from '../../../features/categorySlice';
+import { editProducts, listOneProducts } from '../../../features/productSlice';
 
-import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { listCategory } from '../../../features/categorySlice'
-import { addProducts } from '../../../features/productSlice'
-
-const AddProduct = () => {
+const EditProduct = () => {
+    const {id} = useParams()
     const dispatch = useDispatch()
     const category  = useSelector(data => data.category.value)
+    const product = useSelector(data => data.product.value)
     useEffect(() => {
         dispatch(listCategory())
+        const getOne = async () =>{
+            const {data} = await listOneProduct(id)
+            reset(data)
+        }
+        getOne()
     }, []);
-
-    const {register, handleSubmit, formState: {errors},reset} = useForm()
-    const navigate = useNavigate()
+    const {register, handleSubmit, formState: {errors}, reset} = useForm()
+    
     const onSubmit = data =>{
-        dispatch(addProducts(data))
-        reset()
+        dispatch(editProducts(data))
+        
     }
+    
   return (
     <div className="col-10 grid-margin">
   <div className="card">
     <div className="card-body">
-      <h4 className="card-title">Thêm sản phẩm</h4>
+      <h4 className="card-title">Sửa sản phẩm</h4>
       <form onSubmit={handleSubmit(onSubmit)} className="form-sample">
         <div className="row">
           <div className="col-md-6">
             <div className="form-group row">
               <label className="col-sm-3 col-form-label">Tên sản phẩm</label>
               <div className="col-sm-9">
-                <input type="text" {...register('name', {required: true})} className="form-control" />
+                <input  type="text" {...register('name', {required: true})} className="form-control" />
                 {errors.name && <span>Tên sản phẩm bắt buộc phải nhập</span>}
               </div>
             </div>
@@ -39,7 +47,7 @@ const AddProduct = () => {
             <div className="form-group row">
               <label className="col-sm-3 col-form-label">Giá sản phẩm</label>
               <div className="col-sm-9">
-                <input type="text" {...register('price', {required: true})} className="form-control" />
+                <input  type="text" {...register('price', {required: true})} className="form-control" />
                 {errors.price && <span>Giá sản phẩm bắt buộc phải nhập</span>}
               </div>
             </div>
@@ -50,7 +58,7 @@ const AddProduct = () => {
           <div className="form-group row">
               <label className="col-sm-3 col-form-label">Số lượng</label>
               <div className="col-sm-9">
-                <input type="text" {...register('quantity', {required: true})} className="form-control"  />
+                <input  type="text" {...register('quantity', {required: true})} className="form-control"  />
                 {errors.quantity && <span>Số lượng sản phẩm bắt buộc phải nhập</span>}
               </div>
             </div>
@@ -71,6 +79,9 @@ const AddProduct = () => {
               <div className="col-sm-9">
                 <select {...register('categoryId', {required: true})} className="form-control">
                     {category?.map(item => {
+                        if (Number(product.categoryId) === Number(item.id) ) {
+                            return <option selected value={`${item.id}`}> {item.nameCate}</option>
+                        }
                         return <option value={`${item.id}`}> {item.nameCate}</option>
                     })}
                 </select>
@@ -85,14 +96,13 @@ const AddProduct = () => {
               </div>
             </div>
           </div>
-          <button className='btn btn-primary mb-2 w-44'>Thêm sản phẩm </button>
+          <button className='btn btn-primary mb-2 w-44'>sửa sản phẩm </button>
         </div>
       </form>
     </div>
   </div>
 </div>
-
   )
 }
 
-export default AddProduct
+export default EditProduct

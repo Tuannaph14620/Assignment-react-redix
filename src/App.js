@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
-import {Routes, Route, Router, Navigate} from 'react-router-dom'
+import {Routes, Route, Navigate} from 'react-router-dom'
 import WebsiteLayout from './components/layouts/WebsiteLayout';
 import AdminLayout from './components/layouts/AdminLayout';
 import ListCategory from './pages/Admin/Category/list';
 import AddCategory from './pages/Admin/Category/AddCategory';
 import ProductList from './pages/Admin/Product/ProductList';
 import AddProduct from './pages/Admin/Product/AddProduct';
+import EditProduct from './pages/Admin/Product/EditProduct';
 function App() {
   return (
     <div className="App">
@@ -24,6 +25,7 @@ function App() {
           <Route path='product'>
             <Route index element={<ProductList/>}/>
             <Route path='add' element={<AddProduct/>}/>
+            <Route path=':id/edit' element={<EditProduct/>}/>
           </Route>
         </Route>
       </Routes>

@@ -18,6 +18,13 @@ export const addCategory = createAsyncThunk(
         return data
     }
 )
+// export const editCategory = createAsyncThunk(
+//     "category/editCategory",
+//     async (category)=>{
+//         const {data} = await addCate(category)
+//         return data
+//     }
+// )
 export const removeCategory = createAsyncThunk(
     "category/removeCategory",
     async (id)=>{
@@ -41,8 +48,8 @@ const CategorySlice = createSlice({
             state.value = actions.payload
         })
         builder.addCase(removeCategory.fulfilled, (state, actions) =>{
-            state.value = state.value.filter(item => item.id != actions.meta.arg)
-        })
+            state.value = state.value.filter(item => item.id !== actions.meta.arg)
+        })  
     }
     
 })
