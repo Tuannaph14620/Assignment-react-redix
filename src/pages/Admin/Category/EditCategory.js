@@ -1,26 +1,33 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
-import { addCategory } from '../../../features/categorySlice'
+import { listOneCate } from '../../../api/category'
+import {editCategory } from '../../../features/categorySlice'
 
-
-const AddCategory = () => {
-  const {register, handleSubmit, formState:{errors}} = useForm()
-  const navigate = useNavigate()
+const EditCategory = () => {
+    const {id} = useParams()
+  const {register, handleSubmit, formState:{errors}, reset} = useForm()
   const dispatch = useDispatch()
-  const notify = () => toast("Thêm thành công !");
+  const notify = ()=> toast("Sửa thành công !")
+    useEffect(()=>{
+        const getOneCate = async () =>{
+            const {data} = await listOneCate(id)
+            reset(data)
+        }
+        getOneCate()
+    }, [])
+  
   const onSubmit =  data =>{
-    dispatch(addCategory(data))
+    dispatch(editCategory(data))
     notify()
   }
-  
+
   return (
     <div className="col-md-10 grid-margin stretch-card">
-      
   <div className="card">
     <div className="card-body">
       <h4 className="card-title">Thêm danh mục sản phẩm</h4>
@@ -31,7 +38,7 @@ const AddCategory = () => {
           {errors.nameCate && <span style={{color: 'red'}}>Bạn bắt buộc phải nhập tên danh mục</span>}
         </div>
         <button className="btn btn-primary">Submit</button>
-        <ToastContainer />
+        <ToastContainer/>
       </form>
     </div>
   </div>
@@ -40,4 +47,4 @@ const AddCategory = () => {
   )
 }
 
-export default AddCategory
+export default EditCategory

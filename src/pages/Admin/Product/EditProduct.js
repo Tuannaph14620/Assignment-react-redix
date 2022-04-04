@@ -1,13 +1,16 @@
-import { data } from 'autoprefixer';
-import React, { useEffect } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import {useParams } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 import { listOneProduct } from '../../../api/product';
 import { listCategory } from '../../../features/categorySlice';
-import { editProducts, listOneProducts } from '../../../features/productSlice';
+import { editProducts} from '../../../features/productSlice';
 
 const EditProduct = () => {
+    const [img, setImg] = useState()
+    const notify = ()=> toast('Sửa thành công!')
     const {id} = useParams()
     const dispatch = useDispatch()
     const category  = useSelector(data => data.category.value)
@@ -17,6 +20,7 @@ const EditProduct = () => {
         const getOne = async () =>{
             const {data} = await listOneProduct(id)
             reset(data)
+            
         }
         getOne()
     }, []);
@@ -24,9 +28,26 @@ const EditProduct = () => {
     
     const onSubmit = data =>{
         dispatch(editProducts(data))
-        
+        notify()
     }
-    
+    const InputImage = async (e)=>{
+      const file = e.target.files[0];
+            const CLOUDINARY_API = "https://api.cloudinary.com/v1_1/dl8w6p4sf/image/upload";
+
+            const formData = new FormData();
+
+            formData.append("file", file);
+            formData.append("upload_preset", "jovx8mjh");
+
+            // call api cloudinary
+
+            const response = await axios.post(CLOUDINARY_API, formData, {
+                headers: {
+                    "Content-Type": "application/form-data",
+                },
+            });
+            setImg(response.data.url)
+    }
   return (
     <div className="col-10 grid-margin">
   <div className="card">
@@ -92,16 +113,19 @@ const EditProduct = () => {
             <div className="form-group row">
               <label className="col-sm-3 col-form-label">Ảnh sản phẩm</label>
               <div className="col-sm-9">
-                <input type="file" className='form-control'/>
+                <input onChange={InputImage} type="file" className='form-control'/>
+                <img src={`${product.img}`}/>
               </div>
             </div>
           </div>
-          <button className='btn btn-primary mb-2 w-44'>sửa sản phẩm </button>
+          <button className='btn btn-primary mb-2 w-44'>Sửa sản phẩm </button>
         </div>
+        <ToastContainer/>
       </form>
     </div>
   </div>
 </div>
+
   )
 }
 

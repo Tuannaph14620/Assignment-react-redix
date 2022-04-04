@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
 import { listProducts, removeProducts } from '../../../features/productSlice'
 const ProductList = () => {
-
+    const notify = ()=> toast('Xóa thành công!')
     const product = useSelector(data => data.product.value)
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(listProducts())
+        
     }, [])
 
   return (
@@ -16,7 +18,7 @@ const ProductList = () => {
     <div className="card-body">
       <h4 className="card-title">Danh sách sản phẩm</h4>
       <div className="table-responsive">
-        <table className="table table-striped">
+        <table className="table table-striped text-left">
           <thead>
             <tr>
               <th>
@@ -37,7 +39,7 @@ const ProductList = () => {
               <th>
                 Ngày nhập hàng
               </th>
-              <th>Hành động</th>
+              <th className='text-center'>Hành động</th>
             </tr>
           </thead>
           <tbody>
@@ -56,19 +58,19 @@ const ProductList = () => {
                     {Number(item.price).toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) }
                   </td>
                   <td>
-                    <img src={`${item.img}`}/>
+                    <img style={{borderRadius: 0, width: '100px', height: '110px' }}  src={`${item.img}`}/>
                   </td>
                   <td>
                     {item.createdAt}
                   </td>
                   <td>
                       <NavLink className='btn btn-primary mr-2' to={`/admin/product/${item.id}/edit`}>Update</NavLink>
-                      <button onClick={()=>{dispatch(removeProducts(item.id))}} className='btn btn-danger'>Remove</button>
+                      <button onClick={()=>{dispatch(removeProducts(item.id),notify())}} className='btn btn-danger'>Remove</button>
                   </td>
                 </tr>
               })}
             
-            
+            <ToastContainer/>
           </tbody>
         </table>
       </div>

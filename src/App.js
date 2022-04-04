@@ -8,6 +8,7 @@ import AddCategory from './pages/Admin/Category/AddCategory';
 import ProductList from './pages/Admin/Product/ProductList';
 import AddProduct from './pages/Admin/Product/AddProduct';
 import EditProduct from './pages/Admin/Product/EditProduct';
+import EditCategory from './pages/Admin/Category/EditCategory';
 function App() {
   return (
     <div className="App">
@@ -21,6 +22,7 @@ function App() {
           <Route path='category'>
             <Route index element={<ListCategory/>}/>
             <Route path='add' element={<AddCategory/>}/>
+            <Route path=':id/edit' element={<EditCategory/>}/>
           </Route>
           <Route path='product'>
             <Route index element={<ProductList/>}/>
