@@ -11,12 +11,13 @@ import EditProduct from './pages/Admin/Product/EditProduct';
 import EditCategory from './pages/Admin/Category/EditCategory';
 import SignIn from './pages/Client/auth/SignIn';
 import SignUp from './pages/Client/auth/SignUp';
+import HomePage from './pages/Client/HomePage';
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path='/' element={<WebsiteLayout/>}>
-          <Route index element={<h1>HomePage</h1>}/>
+          <Route index element={<HomePage/>}/>
           <Route path='signin' element={<SignIn/>} />
           <Route path='signup' element={<SignUp/>} />
 

@@ -1,10 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addProduct, listOneProduct, listProduct, removeProduct, updateProduct } from "../api/product";
+import { addProduct, listOneProduct, listProduct, ListProductHome, removeProduct, updateProduct } from "../api/product";
 
 export const listProducts = createAsyncThunk(
     "product/listProduct",
     async () =>{
         const {data} = await listProduct()
+        return data
+    }
+)
+export const ListProductsHome = createAsyncThunk(
+    "product/listProductHome",
+    async () =>{
+        const {data} = await ListProductHome()
         return data
     }
 )
@@ -38,6 +45,9 @@ const ProductSlice = createSlice({
     },
     extraReducers: (builder)=>{
         builder.addCase(listProducts.fulfilled, (state, actions) =>{
+            state.value = actions.payload
+        })
+        builder.addCase(ListProductsHome.fulfilled, (state, actions) =>{
             state.value = actions.payload
         })
         builder.addCase(addProducts.fulfilled, (state, actions) =>{
