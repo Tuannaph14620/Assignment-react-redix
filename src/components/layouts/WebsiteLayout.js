@@ -1,5 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import FooterIndex from '../FooterIndex'
 import HeaderIndex from '../headerIndex'
 const WebsiteLayout = () => {
   return (
@@ -11,7 +12,7 @@ const WebsiteLayout = () => {
             <Outlet />
         </main>
         <footer>
-            Footer
+            <FooterIndex/>
         </footer>
     </div>
   )

@@ -57,7 +57,7 @@ const SignUp = () => {
           <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900"> Remember me </label>
         </div>
         <div className="text-sm">
-          <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500"> Tôi đã có tài khoảng! <strong>Đăng nhập</strong> </a>
+          <a href="/signin" className="font-medium text-indigo-600 hover:text-indigo-500"> Tôi đã có tài khoảng! <strong>Đăng nhập</strong> </a>
         </div>
       </div>
       <div>

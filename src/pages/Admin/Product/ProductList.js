@@ -9,11 +9,10 @@ const ProductList = () => {
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(listProducts())
-        
     }, [])
 
   return (
-    <div className="col-lg-10 grid-margin stretch-card">
+    <div className="col-lg-10 grid-margin stretch-card"> <ToastContainer/>
   <div className="card">
     <div className="card-body">
       <h4 className="card-title">Danh sách sản phẩm</h4>
@@ -70,7 +69,7 @@ const ProductList = () => {
                 </tr>
               })}
             
-            <ToastContainer/>
+            
           </tbody>
         </table>
       </div>

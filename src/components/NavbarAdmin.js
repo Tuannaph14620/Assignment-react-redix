@@ -21,7 +21,7 @@ const NavbarAdmin = () => {
     <div className="navbar-menu-wrapper d-flex align-items-top"> 
       <ul className="navbar-nav">
         <li className="nav-item font-weight-semibold d-none d-lg-block ms-0">
-          <h1 className="welcome-text">Xin chào<span className="text-black fw-bold"> {`${localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).user.username : "" }`}</span></h1>
+          <h1 className="welcome-text">Xin chào<span className="text-black fw-bold"> {localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).user.username : "" }</span></h1>
           <h3 className="welcome-sub-text">Chúc bạn một ngày tốt lành </h3>
         </li>
       </ul>

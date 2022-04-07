@@ -20,6 +20,7 @@ const EditProduct = () => {
         const getOne = async () =>{
             const {data} = await listOneProduct(id)
             reset(data)
+            setImg(data.img)
             
         }
         getOne()

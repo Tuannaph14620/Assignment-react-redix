@@ -1,16 +1,16 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { useDispatch,  } from 'react-redux'
+import { ToastContainer } from 'react-toastify'
 import { Login } from '../../../features/AuthSlice'
 const SignIn = () => {
-
     const {register, handleSubmit} = useForm()
     const dispatch = useDispatch()
     const onSubmit = data=>{
       dispatch(Login(data))
     }
   return (
-    <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"> <ToastContainer/>
   <div className="max-w-md w-full space-y-8">
     <div>
       <img className="mx-auto h-12 w-auto" src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1644822377/logo_ea3bvi.png" alt="Workflow" />

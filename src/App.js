@@ -12,17 +12,21 @@ import EditCategory from './pages/Admin/Category/EditCategory';
 import SignIn from './pages/Client/auth/SignIn';
 import SignUp from './pages/Client/auth/SignUp';
 import HomePage from './pages/Client/HomePage';
+import ProductPage from './pages/Client/ProductPage';
+import SlidebarProduct from './components/SlidebarProduct';
+import PrivateRouter from './components/PrivateRouter';
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path='/' element={<WebsiteLayout/>}>
           <Route index element={<HomePage/>}/>
+          <Route path='product' element={<ProductPage/>}/>
+          <Route path='pro' element={<SlidebarProduct/>}/>
           <Route path='signin' element={<SignIn/>} />
           <Route path='signup' element={<SignUp/>} />
-
         </Route>
-        <Route path='admin' element={<AdminLayout/>}>
+        <Route path='admin' element={<AdminLayout/> }>
           <Route index element={<Navigate to="dashboard"/>}/>
           <Route path='dashboard' element={<h1>Dashboard</h1>}/>
           <Route path='category'>

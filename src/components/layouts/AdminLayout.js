@@ -1,9 +1,8 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import MainPanel from '../MainPanel'
+
 import NavbarAdmin from '../NavbarAdmin'
 import SlidebarAdmin from '../SlidebarAdmin'
-
 const AdminLayout = () => {
   return (
    <div className="container-scroller">
