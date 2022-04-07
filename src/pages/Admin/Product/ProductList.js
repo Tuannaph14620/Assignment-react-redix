@@ -30,7 +30,7 @@ const ProductList = () => {
                 Tên sản phẩm
               </th>
               <th>
-                Gía sản phẩm
+                Giá sản phẩm
               </th>
               <th>
                 Ảnh sản phẩm
@@ -48,7 +48,7 @@ const ProductList = () => {
                     {index +1}
                   </td>
                   <td>
-                      {item.categoryId === "1" ? "Trang phục sân nhà" : item.categoryId === "2" ? "Trang phục sân khách" : "Trang phục sân tập" }
+                      {item.categoryId === "1" ? "Trang phục sân nhà" : item.categoryId === "2" ? "Trang phục sân khách" :item.categoryId === "2" ? "Trang phục sân tập" : "Iconic MCS" }
                   </td>
                   <td>
                     {item.name}

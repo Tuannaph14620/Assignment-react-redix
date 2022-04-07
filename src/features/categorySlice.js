@@ -44,7 +44,6 @@ const CategorySlice = createSlice({
             state.value.push(actions.payload)
         })
         builder.addCase(listCategory.fulfilled, (state, actions) =>{
-            console.log(actions);
             state.value = actions.payload
         })
         builder.addCase(removeCategory.fulfilled, (state, actions) =>{

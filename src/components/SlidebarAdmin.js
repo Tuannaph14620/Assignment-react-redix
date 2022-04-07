@@ -36,7 +36,12 @@ const SlidebarAdmin = () => {
           </NavLink>
           <div className="collapse" id="form-elements">
             <ul className="nav flex-column sub-menu">
-              <li className="nav-item"><NavLink className="nav-link" to="pages/forms/basic_elements.html">Thêm tài khoản</NavLink></li>
+              <li className="nav-item"><NavLink className="nav-link" to="#">Thêm tài khoản</NavLink></li>
+            </ul>
+          </div>
+          <div className="collapse" id="form-elements">
+            <ul className="nav flex-column sub-menu">
+              <li className="nav-item"><NavLink className="nav-link" to="/admin/user">Danh sách tài khoản</NavLink></li>
             </ul>
           </div>
         </li>
@@ -56,6 +61,11 @@ const SlidebarAdmin = () => {
               <li className="nav-item"> <NavLink className="nav-link" to="/admin/category/add">Thêm danh mục</NavLink></li>
             </ul>
           </div>
+        </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" to='/'>
+            <span className="menu-title">Xem Trang Website</span>
+          </NavLink>
         </li>
       </ul>
     </nav>

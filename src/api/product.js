@@ -24,3 +24,11 @@ export const removeProduct = (id)=>{
     const url = `/products/${id}`;
     return instance.delete(url)
 }
+export const ListCateProduct = (id) => {
+    const url = `categorys/${id}?_embed=products`;
+    return instance.get(url);
+};
+export const getProductSearch = (post) => {
+    const url = `/products/?name_like=${post}`;
+    return instance.get(url);
+}

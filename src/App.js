@@ -15,13 +15,18 @@ import HomePage from './pages/Client/HomePage';
 import ProductPage from './pages/Client/ProductPage';
 import SlidebarProduct from './components/SlidebarProduct';
 import PrivateRouter from './components/PrivateRouter';
+import ListUser from './pages/Admin/User/ListUser';
+import DetailProductPage from './pages/Client/DetailProductPage';
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path='/' element={<WebsiteLayout/>}>
           <Route index element={<HomePage/>}/>
-          <Route path='product' element={<ProductPage/>}/>
+          <Route path='product'>
+            <Route index  element={<ProductPage/>}/>
+            <Route path=':id' element={<DetailProductPage/>} />
+          </Route>
           <Route path='pro' element={<SlidebarProduct/>}/>
           <Route path='signin' element={<SignIn/>} />
           <Route path='signup' element={<SignUp/>} />
@@ -36,6 +41,11 @@ function App() {
           </Route>
           <Route path='product'>
             <Route index element={<ProductList/>}/>
+            <Route path='add' element={<AddProduct/>}/>
+            <Route path=':id/edit' element={<EditProduct/>}/>
+          </Route>
+          <Route path='user'>
+            <Route index element={<ListUser/>}/>
             <Route path='add' element={<AddProduct/>}/>
             <Route path=':id/edit' element={<EditProduct/>}/>
           </Route>

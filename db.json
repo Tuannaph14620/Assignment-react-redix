@@ -5,7 +5,7 @@
       "price": "2350000",
       "quantity": "100",
       "createdAt": "2022-04-04",
-      "categoryId": "1",
+      "categoryId": 1,
       "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649082364/d2zcxd6oyoeoujqhv5ko.png",
       "id": 7
     },
@@ -14,7 +14,7 @@
       "price": "1159000",
       "quantity": "100",
       "createdAt": "2022-04-04",
-      "categoryId": "1",
+      "categoryId": 1,
       "img": "https://res.cloudinary.com/dl8w6p4sf/image/upload/v1649083764/fzckai29pftuem9qiz6m.png",
       "id": 8
     },
@@ -23,7 +23,7 @@
       "price": "1950000",
       "quantity": "100",
       "createdAt": "2022-04-04",
-      "categoryId": "1",
+      "categoryId": 1,
       "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649084135/k5hndrya2bo3pgr1acqv.png",
       "id": 9
     },
@@ -32,7 +32,7 @@
       "price": "1950000",
       "quantity": "100",
       "createdAt": "2022-04-05",
-      "categoryId": "1",
+      "categoryId": 1,
       "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649152046/xpsopspkff5ioal3yvyt.png",
       "id": 10
     },
@@ -41,12 +41,165 @@
       "price": "1950000",
       "quantity": "100",
       "createdAt": "2022-04-05",
-      "categoryId": "1",
+      "categoryId": 1,
       "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649152080/j8jrejo2uwrqoe9dqwy7.png",
       "id": 11
+    },
+    {
+      "name": "Manchester City Iconic MCS Mesh Track Jacket",
+      "price": "2159000",
+      "quantity": "111",
+      "createdAt": "2022-04-07",
+      "categoryId": 4,
+      "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649345425/pnyk7cryhhe7z03irnfk.png",
+      "id": 12
+    },
+    {
+      "name": "Manchester City Iconic MCS Tee",
+      "price": "2159000",
+      "quantity": "111",
+      "createdAt": "2022-04-07",
+      "categoryId": 4,
+      "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649345483/fdieorqjrlxgkdwvdmnx.webp",
+      "id": 13
+    },
+    {
+      "name": "Manchester City Iconic MCS Mesh Track Pants",
+      "price": "1950000",
+      "quantity": "111",
+      "createdAt": "2022-04-07",
+      "categoryId": 4,
+      "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649345526/iydbeewuhmuufmbjdedo.png",
+      "id": 14
+    },
+    {
+      "name": "Manchester City Iconic MCS Mesh Track Jacket",
+      "price": "2159000",
+      "quantity": "111",
+      "createdAt": "2022-04-07",
+      "categoryId": 4,
+      "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649345591/kqwiglrw686xn3hg4aqt.webp",
+      "id": 15
+    },
+    {
+      "name": "Manchester City Iconic MCS Tee",
+      "price": "2159000",
+      "quantity": "111",
+      "createdAt": "2022-04-07",
+      "categoryId": 4,
+      "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649345641/wawxeo6kusyqtbndisb0.png",
+      "id": 16
+    },
+    {
+      "name": "Manchester City Iconic MCS Crew",
+      "price": "2159000",
+      "quantity": "111",
+      "createdAt": "2022-04-07",
+      "categoryId": 4,
+      "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649345693/hmhar9mvuybhyd8msbxc.webp",
+      "id": 17
+    },
+    {
+      "name": "Manchester City Iconic MCS Shorts",
+      "price": "1950000",
+      "quantity": "111",
+      "createdAt": "2022-04-07",
+      "categoryId": 4,
+      "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649345756/iq1lkd97ujg97xeytktl.webp",
+      "id": 18
+    },
+    {
+      "name": "Manchester City Iconic MCS Bucket Hat",
+      "price": "1950000",
+      "quantity": "111",
+      "createdAt": "2022-04-07",
+      "categoryId": 4,
+      "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649345794/kyhdyphgu1xbquemao8m.png",
+      "id": 19
+    },
+    {
+      "name": "Manchester City Away Shirt 21/22",
+      "price": "2159000",
+      "quantity": "111",
+      "createdAt": "2022-04-07",
+      "categoryId": 2,
+      "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649345847/xgapmf3rf8sokvzani39.png",
+      "id": 20
+    },
+    {
+      "name": "Manchester City Away Long Sleeve Shirt 21/22 ",
+      "price": "2159000",
+      "quantity": "111",
+      "createdAt": "2022-04-08",
+      "categoryId": 2,
+      "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649345883/l5kgt3tzrqqcyrnpqdz5.png",
+      "id": 21
+    },
+    {
+      "name": "Manchester City Authentic Football Shorts 21/22",
+      "price": "2159000",
+      "quantity": "111",
+      "createdAt": "2022-04-07",
+      "categoryId": 4,
+      "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649345911/runseuacbbvkom5zq539.png",
+      "id": 22
+    },
+    {
+      "name": "Manchester City Pre-Match Shirt",
+      "price": "1950000",
+      "quantity": "111",
+      "createdAt": "2022-04-07",
+      "categoryId": 3,
+      "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649345999/iqqeyofnynkmlsix6iz7.png",
+      "id": 23
+    },
+    {
+      "name": "Manchester City Pre-Match Shirt",
+      "price": "1950000",
+      "quantity": "111",
+      "createdAt": "2022-04-07",
+      "categoryId": 3,
+      "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649346051/cegvazyirpa2bu4jkl8i.png",
+      "id": 24
+    },
+    {
+      "name": "Manchester City Pre-Match 1/4 Zip Top",
+      "price": "1950000",
+      "quantity": "111",
+      "createdAt": "2022-04-07",
+      "categoryId": 4,
+      "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649346095/i1erwhhxhoxpbfe5pwbl.png",
+      "id": 25
+    },
+    {
+      "name": "Manchester City Pre-Match Shirt",
+      "price": "1950000",
+      "quantity": "111",
+      "createdAt": "",
+      "categoryId": 3,
+      "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649346142/tr7d9fz9ktddfq1zmpuq.png",
+      "id": 26
+    },
+    {
+      "name": "Manchester City Pre-Match Jacket",
+      "price": "1950000",
+      "quantity": "111",
+      "createdAt": "2022-04-07",
+      "categoryId": 3,
+      "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649346246/wooy2up00jc0dtwiijg7.webp",
+      "id": 29
+    },
+    {
+      "name": "Manchester City Pre-Match Jacket",
+      "price": "1950000",
+      "quantity": "111",
+      "createdAt": "2022-04-07",
+      "categoryId": 3,
+      "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649346316/id6jwueevng97d5oadag.png",
+      "id": 30
     }
   ],
-  "categories": [
+  "categorys": [
     {
       "nameCate": "Trang phục sân nhà",
       "id": 1
@@ -58,6 +211,10 @@
     {
       "nameCate": "Trang phục sân tập",
       "id": 3
+    },
+    {
+      "nameCate": "Icomic MCS",
+      "id": 4
     }
   ],
   "users": [

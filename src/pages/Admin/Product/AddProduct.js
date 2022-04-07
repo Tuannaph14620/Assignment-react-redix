@@ -92,8 +92,8 @@ const AddProduct = () => {
               <label className="col-sm-3 col-form-label">Category</label>
               <div className="col-sm-9">
                 <select {...register('categoryId', {required: true})} className="form-control">
-                    {category?.map(item => {
-                        return <option value={`${item.id}`}> {item.nameCate}</option>
+                    {category?.map((item,index) => {
+                        return <option key={index} value={`${item.id}`}> {item.nameCate}</option>
                     })}
                 </select>
               </div>

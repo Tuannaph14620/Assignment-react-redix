@@ -30,29 +30,29 @@ const HomePage = () => {
               <div className="flex items-center space-x-6 lg:space-x-8">
                 <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
                   <div className="w-44 h-64 rounded-lg overflow-hidden sm:opacity-0 lg:opacity-100">
-                    <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1649153699/FNb8zwsXIAU_geZ_djo1rf.jpg" alt className="w-full h-full object-center object-cover" />
+                    <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1649153699/FNb8zwsXIAU_geZ_djo1rf.jpg"  className="w-full h-full object-center object-cover" />
                   </div>
                   <div className="w-44 h-64 rounded-lg overflow-hidden">
-                    <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1649153436/FPWDCYCXIAQqXi__vcyowo.jpg" alt className="w-full h-full object-center object-cover" />
-                  </div>
-                </div>
-                <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
-                  <div className="w-44 h-64 rounded-lg overflow-hidden">
-                    <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1649153494/FPWHluWXEAUKOJd_plrai6.jpg" alt className="w-full h-full object-center object-cover" />
-                  </div>
-                  <div className="w-44 h-64 rounded-lg overflow-hidden">
-                    <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1649153826/FO2wkxtX0AUQIX__sbzf7o.jpg" alt className="w-full h-full object-center object-cover" />
-                  </div>
-                  <div className="w-44 h-64 rounded-lg overflow-hidden">
-                    <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1649153697/FOToL91WUAox8k5_pgkvly.jpg" alt className="w-full h-full object-center object-cover" />
+                    <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1649153436/FPWDCYCXIAQqXi__vcyowo.jpg"  className="w-full h-full object-center object-cover" />
                   </div>
                 </div>
                 <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
                   <div className="w-44 h-64 rounded-lg overflow-hidden">
-                    <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1649153697/FOTo3sEWYAEAZ3D_iq7dzi.jpg" alt className="w-full h-full object-center object-cover" />
+                    <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1649153494/FPWHluWXEAUKOJd_plrai6.jpg"  className="w-full h-full object-center object-cover" />
                   </div>
                   <div className="w-44 h-64 rounded-lg overflow-hidden">
-                    <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1649153697/FOTVZoiXwAQkivo_fbqmpf.jpg" alt className="w-full h-full object-center object-cover" />
+                    <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1649153826/FO2wkxtX0AUQIX__sbzf7o.jpg"  className="w-full h-full object-center object-cover" />
+                  </div>
+                  <div className="w-44 h-64 rounded-lg overflow-hidden">
+                    <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1649153697/FOToL91WUAox8k5_pgkvly.jpg"  className="w-full h-full object-center object-cover" />
+                  </div>
+                </div>
+                <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
+                  <div className="w-44 h-64 rounded-lg overflow-hidden">
+                    <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1649153697/FOTo3sEWYAEAZ3D_iq7dzi.jpg"  className="w-full h-full object-center object-cover" />
+                  </div>
+                  <div className="w-44 h-64 rounded-lg overflow-hidden">
+                    <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1649153697/FOTVZoiXwAQkivo_fbqmpf.jpg"  className="w-full h-full object-center object-cover" />
                   </div>
                 </div>
               </div>
@@ -69,8 +69,8 @@ const HomePage = () => {
   <h2 className="py-4 text-blue-900 font-bold text-2xl uppercase">Sản phẩm mới nhất</h2>
   <div className="news">
     <div className="flex flex-wrap justify-between  gap-px ">
-    {product?.map(item =>{
-        return <div className="col w-1/6 p-4">
+    {product?.map((item,index) =>{
+        return <div key={index} className="col w-1/6 p-4">
         <a href="/#/news/${post.id}"><img className="w-full" src={`${item.img}`} /></a>
         <a href="/news/${post.id}">
           <h3 className="py-2 font-bold text-blue-900">{item.name}</h3>
@@ -113,10 +113,10 @@ const HomePage = () => {
         </dl>
       </div>
       <div className="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
-        <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1645431711/a5_dsqt0r.png" alt="Walnut card tray with white powder coated steel divider and 3 punchout holes." className="bg-gray-100 rounded-lg" />
-        <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1645431709/a2_cunjge.png" alt="Top down view of walnut card tray with embedded magnets and card groove." className="bg-gray-100 rounded-lg" />
-        <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1645431709/a4_w8sgtj.png" alt="Side of walnut card tray with card groove and recessed card area." className="bg-gray-100 rounded-lg" />
-        <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1645431708/a1_qfg8xr.png" alt="Walnut card tray filled with cards and card angled in dedicated groove." className="bg-gray-100 rounded-lg" />
+        <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1645431711/a5_dsqt0r.png"  className="bg-gray-100 rounded-lg" />
+        <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1645431709/a2_cunjge.png"  className="bg-gray-100 rounded-lg" />
+        <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1645431709/a4_w8sgtj.png"  className="bg-gray-100 rounded-lg" />
+        <img src="https://res.cloudinary.com/dl8w6p4sf/image/upload/v1645431708/a1_qfg8xr.png"  className="bg-gray-100 rounded-lg" />
       </div>
     </div>
   </div>
@@ -127,9 +127,9 @@ const HomePage = () => {
       </div>
     </div>
     <div className="flex justify-between gap-4">
-      {post?.map(item => {
-        return <div className="w-2/6">
-        <a href="index.php?act=cttt&id=<?= $tt['id'] ?>"><img style={{width: '100%', height: 300}} src={`${item.img}`}alt /></a>
+      {post?.map((item, index) => {
+        return <div key={index} className="w-2/6">
+        <a href="index.php?act=cttt&id=<?= $tt['id'] ?>"><img style={{width: '100%', height: 300}} src={`${item.img}`} /></a>
         <p className="font-bold text-blue-900">{item.title}</p>
         <p style={{fontWeight: 300}}>{item.desc}</p>
         <a style={{fontSize: 15}} href="index.php?act=cttt&id=<?= $tt['id'] ?>">Xem thêm...</a>
