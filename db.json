@@ -149,7 +149,7 @@
       "price": "1950000",
       "quantity": "111",
       "createdAt": "2022-04-07",
-      "categoryId": 3,
+      "categoryId": 2,
       "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649345999/iqqeyofnynkmlsix6iz7.png",
       "id": 23
     },

@@ -28,7 +28,8 @@ const EditProduct = () => {
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
     
     const onSubmit = data =>{
-        dispatch(editProducts(data))
+      const number= Number(data.categoryId)
+      dispatch(editProducts({...data,img,categoryId:number}))
         notify()
     }
     const InputImage = async (e)=>{

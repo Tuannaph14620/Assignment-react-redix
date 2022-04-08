@@ -19,7 +19,10 @@ const AddProduct = () => {
     const {register, handleSubmit, formState: {errors},reset} = useForm()
     const navigate = useNavigate()
     const onSubmit = data =>{
-        dispatch(addProducts({...data,img}))
+        const number= Number(data.categoryId)
+        dispatch(addProducts({...data,img,categoryId:number}))
+        console.log({...data, img, categoryId:number});
+        // console.log(typeof number);
         reset()
         notify()
     }
