@@ -2,29 +2,23 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { ListCateProduct } from '../../api/product'
+import { ListCateProduct, listOneProduct } from '../../api/product'
 import { CateProduct, listProductsOne } from '../../features/productSlice'
 
 const DetailProductPage = () => {
-  const [getProduct, setGetProduct] = useState()
+  const product = useSelector(data =>data.product.value)
+  const [getProduct, setGetProduct] = useState([])
   const { id, cate } = useParams()
   const dispatch = useDispatch()
-  // const product = useSelector(data => data.product.value)
   useEffect(() => {
     const getOne =async ()=>{
-      const {data} = await ListCateProduct(cate)
+      const {data} = await listOneProduct(id)
       console.log(data.products);
       setGetProduct(data)
     }
     getOne()
 
-    dispatch(listProductsOne(id))
-    const handleCatePro= async ()=> {
-      const productCate = await ListCateProduct(cate)
-      // setCatePro(productCate)
-      
-  } 
-  handleCatePro() 
+    dispatch(CateProduct(cate))
   }, [])
   useEffect(() =>{
     
@@ -36,11 +30,11 @@ const DetailProductPage = () => {
         <div>
           <div className="flex justify-between px-20 pt-10">
             <div className="pro1">
-              <img src={`${getProduct.products.img}`} width="500px" height="500px" alt />
+              <img src={`${getProduct.img}`} width="500px" height="500px" alt />
             </div>
             <div className="mt-4 lg:mt-0 lg:row-span-4">
               <h2 className="sr-only">Product information</h2>
-              <p className="text-3xl text-gray-900">{Number(getProduct.products.price).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</p>
+              <p className="text-3xl text-gray-900">{Number(getProduct.price).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</p>
               <div className="mt-6">
                 <h3 className="sr-only">Reviews</h3>
                 <div className="flex items-center">
@@ -136,7 +130,7 @@ const DetailProductPage = () => {
             <h2 className="py-4 text-blue-900 font-bold text-2xl uppercase">Sản phẩm liên quan</h2>
             <div className="news">
               <div className="flex flex-wrap justify-between  gap-px ">
-                {/* {catePro?.map(item => {
+                {product?.map(item => {
                   return <div className="col w-1/6 p-4">
                     <a href="/#/news/${post.id}"><img className="w-full" src={`${item.img}`} /></a>
                     <a href="/news/${post.id}">
@@ -146,7 +140,7 @@ const DetailProductPage = () => {
                   </div>
 
 
-                })} */}
+                })}
 
               </div>
             </div></div>

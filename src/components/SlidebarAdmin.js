@@ -13,9 +13,9 @@ const SlidebarAdmin = () => {
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" data-bs-toggle="collapse" to="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-            <i className="menu-icon mdi mdi-floor-plan"/>
+            <i className="menu-icon mdi mdi-floor-plan" />
             <span className="menu-title">Sản phẩm</span>
-            <i className="menu-arrow" /> 
+            <i className="menu-arrow" />
           </NavLink>
           <div className="collapse" id="ui-basic">
             <ul className="nav flex-column sub-menu">
@@ -62,6 +62,24 @@ const SlidebarAdmin = () => {
             </ul>
           </div>
         </li>
+        <li className="nav-item">
+          <a className="nav-link" data-bs-toggle="collapse" href="#form-element" aria-expanded="false" aria-controls="form-element">
+            <i className="menu-icon mdi mdi-card-text-outline" />
+            <span className="menu-title">Tin tức</span>
+            <i className="menu-arrow" />
+          </a>
+          <div className="collapse" id="form-element">
+            <ul className="nav flex-column sub-menu">
+              <li className="nav-item"><NavLink className="nav-link" to="/admin/new/add" >Thêm bài viết</NavLink></li>
+            </ul>
+          </div>
+          <div className="collapse" id="form-element">
+            <ul className="nav flex-column sub-menu">
+              <li className="nav-item"><NavLink className="nav-link" to="/admin/new">Danh sách bài viết</NavLink></li>
+            </ul>
+          </div>
+        </li>
+
         <li className="nav-item">
           <NavLink className="nav-link" to='/'>
             <span className="menu-title">Xem Trang Website</span>

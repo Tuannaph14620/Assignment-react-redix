@@ -17,6 +17,9 @@ import SlidebarProduct from './components/SlidebarProduct';
 import PrivateRouter from './components/PrivateRouter';
 import ListUser from './pages/Admin/User/ListUser';
 import DetailProductPage from './pages/Client/DetailProductPage';
+import ListNew from './pages/Admin/New/ListNew';
+import AddNew from './pages/Admin/New/AddNew';
+import EditNew from './pages/Admin/New/ListNew';
 function App() {
   return (
     <div className="App">
@@ -48,6 +51,11 @@ function App() {
             <Route index element={<ListUser/>}/>
             <Route path='add' element={<AddProduct/>}/>
             <Route path=':id/edit' element={<EditProduct/>}/>
+          </Route>
+          <Route path='new'>
+            <Route index element={<ListNew/>}/>
+            <Route path='add' element={<AddNew/>}/>
+            <Route path=':id/edit' element={<EditNew/>}/>
           </Route>
         </Route>
         

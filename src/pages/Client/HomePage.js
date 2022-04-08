@@ -71,8 +71,8 @@ const HomePage = () => {
     <div className="flex flex-wrap justify-between  gap-px ">
     {product?.map((item,index) =>{
         return <div key={index} className="col w-1/6 p-4">
-        <a href="/#/news/${post.id}"><img className="w-full" src={`${item.img}`} /></a>
-        <a href="/news/${post.id}">
+        <a href={`/product/${item.id}/${item.categoryId}`} ><img className="w-full" src={`${item.img}`} /></a>
+        <a href={`/product/${item.id}/${item.categoryId}`}>
           <h3 className="py-2 font-bold text-blue-900">{item.name}</h3>
         </a>
         <p>{Number(item.price).toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) }</p>
