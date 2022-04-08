@@ -6,7 +6,7 @@ import { ListCateProduct } from '../../api/product'
 import { CateProduct, listProductsOne } from '../../features/productSlice'
 
 const DetailProductPage = () => {
-  const [getProduct, setGetProduct] = useState([])
+  const [getProduct, setGetProduct] = useState()
   const { id, cate } = useParams()
   const dispatch = useDispatch()
   // const product = useSelector(data => data.product.value)
@@ -26,6 +26,9 @@ const DetailProductPage = () => {
   } 
   handleCatePro() 
   }, [])
+  useEffect(() =>{
+    
+  },[])
   
   return (
     <main className=" px-10">
@@ -37,7 +40,7 @@ const DetailProductPage = () => {
             </div>
             <div className="mt-4 lg:mt-0 lg:row-span-4">
               <h2 className="sr-only">Product information</h2>
-              <p className="text-3xl text-gray-900">{Number(getProduct.price).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</p>
+              <p className="text-3xl text-gray-900">{Number(getProduct.products.price).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</p>
               <div className="mt-6">
                 <h3 className="sr-only">Reviews</h3>
                 <div className="flex items-center">
