@@ -48,7 +48,7 @@ const ProductList = () => {
                     {index +1}
                   </td>
                   <td>
-                      {item.categoryId === "1" ? "Trang phục sân nhà" : item.categoryId === "2" ? "Trang phục sân khách" :item.categoryId === "2" ? "Trang phục sân tập" : "Iconic MCS" }
+                      {item.categoryId === 1 ? "Trang phục sân nhà" : item.categoryId === 2 ? "Trang phục sân khách" :item.categoryId === 3 ? "Trang phục sân tập" : "Iconic MCS" }
                   </td>
                   <td>
                     {item.name}

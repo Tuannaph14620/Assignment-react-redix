@@ -32,3 +32,15 @@ export const getProductSearch = (post) => {
     const url = `/products/?name_like=${post}`;
     return instance.get(url);
 }
+export const getProductA_Z = () => {
+    const url = `/products/?_sort=price&_order=asc`;
+    return instance.get(url);
+}
+export const getProductZ_A = () => {
+    const url = `/products/?_sort=price&_order=desc`;
+    return instance.get(url);
+}
+export const getProductNew = () => {
+    const url = `/products/?_sort=createdAt&_order=asc`;
+    return instance.get(url);
+}

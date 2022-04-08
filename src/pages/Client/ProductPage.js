@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
+import { getProductA_Z } from '../../api/product'
 import { listCategory } from '../../features/categorySlice'
-import { CateProduct, listProducts, SearchProduct } from '../../features/productSlice'
+import { CateProduct, listProducts, SearchProduct, SortProductA_Z } from '../../features/productSlice'
 const ProductPage = () => {
-  
+  const [state, setstate] = useState({value: "a"});
   const dispatch = useDispatch()
   const category = useSelector(data => data.category.value)
   const product = useSelector(data => data.product.value)
@@ -17,6 +18,13 @@ const ProductPage = () => {
     dispatch(SearchProduct(data))
     reset()
   }
+  
+  // console.log("state",state);
+  const handleSort = ()=>{
+    const b =document.querySelector(".form-select")
+    console.log("b=",b.value);
+    dispatch(CateProduct(b.value))
+  }
   return (
     <div className="bg-white mx-20">
       <div>
@@ -25,9 +33,9 @@ const ProductPage = () => {
             <div className="text1 mr-10" style={{ marginTop: 30 }}>
               <h2 className="font-bold text-xl">Danh mục sản phẩm</h2>
               <div>
-                <select className="form-select appearance-none w-48 px-3 py-1.5 font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out mt-3">
+                <select onChange={()=>handleSort()} className="form-select appearance-none w-48 px-3 py-1.5 font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out mt-3">
                   {category?.map((item, index)=>{
-                    return <option onChange={()=> dispatch(CateProduct(item.id))} key={index} value={`${item.id}`}>{item.nameCate}</option> 
+                    return <option key={index}  value={`${item.id}`}>{item.nameCate}</option> 
                   })}
                 </select>
               </div>
@@ -37,7 +45,7 @@ const ProductPage = () => {
             <div className="text1" style={{ marginTop: 30 }}>
               <h2 className="font-bold text-xl mr-40 ">Lọc</h2>
               <div className=''>
-                <select className="form-select appearance-none w-48 px-3 py-1.5 font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out mt-3">
+                <select  className="form-sort appearance-none w-48 px-3 py-1.5 font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out mt-3">
                   <option value={0}>Giá từ cao đến thấp</option>
                   <option value={1}>Giá từ thấp đến cao</option>
                   <option value={2}>Mới nhất</option>

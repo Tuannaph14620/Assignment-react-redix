@@ -104,7 +104,7 @@ const EditProduct = () => {
                         if (Number(product.categoryId) === Number(item.id) ) {
                             return <option selected value={`${item.id}`}> {item.nameCate}</option>
                         }
-                        return <option value={`${item.id}`}> {item.nameCate}</option>
+                        return <option value={`${Number(item.id) }`}> {item.nameCate}</option>
                     })}
                 </select>
               </div>

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addProduct, getProductSearch, ListCateProduct, listOneProduct, listProduct, ListProductHome, removeProduct, updateProduct } from "../api/product";
+import { addProduct, getProductA_Z, getProductNew, getProductSearch, getProductZ_A, ListCateProduct, listOneProduct, listProduct, ListProductHome, removeProduct, updateProduct } from "../api/product";
 
 export const listProducts = createAsyncThunk(
     "product/listProduct",
@@ -26,7 +26,7 @@ export const CateProduct = createAsyncThunk(
     "product/cateProduct",
     async (id) =>{
         const {data} = await ListCateProduct(id)
-        console.log("catePro",data);
+        // console.log("catePro1",data.products);
         return data
     }
 )
@@ -60,6 +60,28 @@ export const removeProducts = createAsyncThunk(
         return data
     }
 )
+export const SortProductA_Z = createAsyncThunk(
+    "product/sortProductAZ",
+    async () =>{
+        const {data} = await getProductA_Z()
+        return data
+    }
+)
+export const SortProductZ_A = createAsyncThunk(
+    "product/sortProductZA",
+    async () =>{
+        const {data} = await getProductZ_A()
+        return data
+    }
+)
+export const SortProductNew = createAsyncThunk(
+    "product/sortProductNew",
+    async () =>{
+        const {data} = await getProductNew()
+        return data
+    }
+)
+
 
 const ProductSlice = createSlice({
     name: "product",
@@ -67,6 +89,16 @@ const ProductSlice = createSlice({
         value: []
     },
     extraReducers: (builder)=>{
+        builder.addCase(SortProductA_Z.fulfilled, (state, actions) =>{
+            console.log("sAZ", actions);
+            state.value = actions.payload
+        })
+        builder.addCase(SortProductZ_A.fulfilled, (state, actions) =>{
+            state.value = actions.payload
+        })
+        builder.addCase(SortProductNew.fulfilled, (state, actions) =>{
+            state.value = actions.payload
+        })
         builder.addCase(listProducts.fulfilled, (state, actions) =>{
             state.value = actions.payload
         })
@@ -77,11 +109,11 @@ const ProductSlice = createSlice({
             state.value = actions.payload
         })
         builder.addCase(CateProduct.fulfilled, (state, actions) =>{
-            console.log(actions);
-            state.value = actions.payload
+            // console.log("catePro",actions);
+            state.value = actions.payload.products
         })
         builder.addCase(SearchProduct.fulfilled, (state, actions) =>{
-            console.log("Search",actions);
+            // console.log("Search",actions);
             state.value=actions.payload
         })
         builder.addCase(addProducts.fulfilled, (state, actions) =>{

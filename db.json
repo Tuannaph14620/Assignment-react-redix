@@ -140,7 +140,7 @@
       "price": "2159000",
       "quantity": "111",
       "createdAt": "2022-04-07",
-      "categoryId": 4,
+      "categoryId": 2,
       "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649345911/runseuacbbvkom5zq539.png",
       "id": 22
     },
@@ -167,7 +167,7 @@
       "price": "1950000",
       "quantity": "111",
       "createdAt": "2022-04-07",
-      "categoryId": 4,
+      "categoryId": 3,
       "img": "http://res.cloudinary.com/dl8w6p4sf/image/upload/v1649346095/i1erwhhxhoxpbfe5pwbl.png",
       "id": 25
     },
