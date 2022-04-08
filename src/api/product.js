@@ -28,6 +28,10 @@ export const ListCateProduct = (id) => {
     const url = `categorys/${id}?_embed=products`;
     return instance.get(url);
 };
+export const ListCateProductLimit = (id) => {
+    const url = `categorys/${id}?_embed=products`;
+    return instance.get(url);
+};
 export const getProductSearch = (post) => {
     const url = `/products/?name_like=${post}`;
     return instance.get(url);
