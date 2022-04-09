@@ -20,6 +20,7 @@ import DetailProductPage from './pages/Client/DetailProductPage';
 import ListNew from './pages/Admin/New/ListNew';
 import AddNew from './pages/Admin/New/AddNew';
 import EditNew from './pages/Admin/New/ListNew';
+import CartPage from './pages/Client/cart/CartPage';
 function App() {
   return (
     <div className="App">
@@ -33,6 +34,7 @@ function App() {
           <Route path='pro' element={<SlidebarProduct/>}/>
           <Route path='signin' element={<SignIn/>} />
           <Route path='signup' element={<SignUp/>} />
+          <Route path='cart' element={<CartPage/>} />
         </Route>
         <Route path='admin' element={<AdminLayout/> }>
           <Route index element={<Navigate to="dashboard"/>}/>

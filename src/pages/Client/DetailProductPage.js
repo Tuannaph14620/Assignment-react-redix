@@ -1,18 +1,25 @@
 
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
 import { ListCateProduct, listOneProduct } from '../../api/product'
+import { addItemToCart } from '../../features/CartSlice'
 import { CateProduct, listProductsOne } from '../../features/productSlice'
+import { addToCart } from '../../utils/cart'
 
 const DetailProductPage = () => {
-  const product = useSelector(data =>data.product.value)
+  const product = useSelector(data => data.product.value)
+  const erorrQuantity = () => toast.error('Bạn vui lòng chọn số lượng!')
+  const errorSuccess = () => toast.success('Thêm sản phẩm vào giỏ hàng thành công !')
   const [getProduct, setGetProduct] = useState([])
+  const [quantity, setQuantity] = useState(1)
   const { id, cate } = useParams()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   useEffect(() => {
-    const getOne =async ()=>{
-      const {data} = await listOneProduct(id)
+    const getOne = async () => {
+      const { data } = await listOneProduct(id)
       console.log(data.products);
       setGetProduct(data)
     }
@@ -20,12 +27,21 @@ const DetailProductPage = () => {
 
     dispatch(CateProduct(cate))
   }, [])
-  useEffect(() =>{
+  const HandleCart = (data, e) => {
+    e.preventDefault()
+    if (quantity == 0) {
+      erorrQuantity()
+    } else {
+      const datas = { ...data, price: +data.price, quantity: +quantity }
+      dispatch(addToCart(datas))
+      errorSuccess()
+      navigate('/cart')
     
-  },[])
-  
+    }
+  }
+
   return (
-    <main className=" px-10">
+    <main className=" px-10"> <ToastContainer />
       <section>
         <div>
           <div className="flex justify-between px-20 pt-10">
@@ -65,7 +81,8 @@ const DetailProductPage = () => {
               </div>
               <form className="mt-10">
                 {/* quantity */}
-                <div className="mt-10"><input type="number" id="inputQty" className="border border-gray-400 p-3" defaultValue={1} /> </div>
+                <div className="mt-10 mr-52"> Số lượng: <br />
+                  <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} className="quantity" min={1} name="quantity" style={{ marginTop: 10, padding: '5px 5px', width: 150 }} id="quantity" /> </div>
                 {/* Sizes */}
                 <div className="mt-10">
                   <div className="flex items-center justify-between">
@@ -122,7 +139,12 @@ const DetailProductPage = () => {
                     </div>
                   </fieldset>
                 </div>
-                <button id="btnAddToCart" className="mt-10 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add to bag</button>
+                <button onClick={(e) => HandleCart({
+                  productId: getProduct.id,
+                  name: getProduct.name,
+                  img: getProduct.img,
+                  price: getProduct.price
+                },e)} id="btnAddToCart" className="mt-10 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add to bag</button>
               </form>
             </div>
           </div>
