@@ -9,7 +9,7 @@ const HeaderIndex = () => {
   const quantityCart = useSelector(data => data.cart.value?.length)
   const isUser = useSelector(data => data.user.value)
   const dispatch = useDispatch()
-  // console.log("user", isUser);
+  console.log("user", isUser.length);
  
   return (
 <div className="bg-white">
@@ -73,11 +73,12 @@ const HeaderIndex = () => {
               </div>
               <a href="#" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Giới Thiệu</a>
               <a href="#" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Liên hệ</a>
+              {isUser.length === 0 ? "" : <a href="/admin" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Admin</a> }
             </div>
           </div>
           <div className="ml-auto flex items-center">
             <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-              {isUser ? <button onClick={()=> dispatch(Logout())} className="text-sm font-medium text-gray-700 hover:text-gray-800">Đăng xuất</button> : <NavLink to="/signin" className="text-sm font-medium text-gray-700 hover:text-gray-800">Đăng nhập</NavLink>}
+              {isUser.length === 0 ? <NavLink to="/signin" className="text-sm font-medium text-gray-700 hover:text-gray-800">Đăng nhập</NavLink> : <button onClick={()=> dispatch(Logout())} className="text-sm font-medium text-gray-700 hover:text-gray-800">Đăng xuất</button> }
               <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
               <NavLink to="/signup" className="text-sm font-medium text-gray-700 hover:text-gray-800">Tạo tài khoản</NavLink>
             </div>
