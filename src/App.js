@@ -21,6 +21,7 @@ import ListNew from './pages/Admin/New/ListNew';
 import AddNew from './pages/Admin/New/AddNew';
 import EditNew from './pages/Admin/New/ListNew';
 import CartPage from './pages/Client/cart/CartPage';
+import CheckOut from './pages/Client/cart/CheckOut';
 function App() {
   return (
     <div className="App">
@@ -35,6 +36,7 @@ function App() {
           <Route path='signin' element={<SignIn/>} />
           <Route path='signup' element={<SignUp/>} />
           <Route path='cart' element={<CartPage/>} />
+          <Route path='checkout' element={<CheckOut/>} />
         </Route>
         <Route path='admin' element={<AdminLayout/> }>
           <Route index element={<Navigate to="dashboard"/>}/>

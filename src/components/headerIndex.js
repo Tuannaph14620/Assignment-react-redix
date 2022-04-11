@@ -5,7 +5,7 @@ import { Logout } from '../features/AuthSlice'
 import Navbar from './Navbar'
 
 const HeaderIndex = () => { 
-  const quantityCart = useSelector(data => data.cart.value.length)
+  const quantityCart = useSelector(data => data.cart.value?.length)
   console.log("quan",quantityCart);
 
   return (

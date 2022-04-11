@@ -1,17 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addOrder, listOrder } from "../api/order";
+import { addOrder, listOneOrder, listOrder } from "../api/order";
 
 export const AddOrders = createAsyncThunk(
     "order/addOrder",
     async (product)=>{
         const {data} = await addOrder(product)
+        localStorage.removeItem('cart')
         return data
     }
 )
-export const ListOrders = createAsyncThunk(
+export const ListOneOrders = createAsyncThunk(
     "order/listOrder",
-    async ()=>{
-        const {data} = await listOrder()
+    async (id)=>{
+        const {data} = await listOneOrder(id)
         return data
     }
 )
@@ -25,7 +26,7 @@ const OrderSlice = createSlice({
         builder.addCase(AddOrders.fulfilled,(state, action)=>{
             state.value.push(action.payload)
         })
-        builder.addCase(ListOrders.fulfilled,(state, action)=>{
+        builder.addCase(ListOneOrders.fulfilled,(state, action)=>{
             state.value = action.payload
         })
     }

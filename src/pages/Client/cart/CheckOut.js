@@ -1,6 +1,16 @@
-import React from 'react'
+import { data } from 'autoprefixer'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { ListOneOrders } from '../../../features/OrderSlice'
 
 const CheckOut = () => {
+    const dispacth = useDispatch()
+    const {id} = useParams()
+    const order = useSelector(data => data.order.value)
+    useEffect(()=>{
+        dispacth(ListOneOrders(id))
+    },[])
   return (
    <main>
   <div className="bbt">

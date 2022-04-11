@@ -5,12 +5,13 @@ const carts = JSON.parse(localStorage.getItem('cart'))
 const cartSlice = createSlice({
     name: 'cart',
     initialState: {
-        value: carts
+        value: carts ?? []
     },
     reducers: {
         addCarts(state, actions) {
             const newCart = actions.payload
-            const isCart = state.value.find(item => item.productId === newCart.productId)
+            
+            const isCart = state.value?.find(item => item.productId === newCart.productId)
             if (!isCart) {
                 state.value.push(newCart)
             } else {

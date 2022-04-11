@@ -2,24 +2,32 @@ import { data } from 'autoprefixer'
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import { decreaseQty, increaseQty, removeItemInCart } from '../../../features/CartSlice'
 import { AddOrders } from '../../../features/OrderSlice'
 
 const CartPage = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+    
     const cart = useSelector(data => data.cart.value)
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart))
     }, [cart])
     let totalProducts = 0
-    cart.forEach(item => {
+    cart?.forEach(item => {
         totalProducts += Number(item.price) * Number(item.quantity)
     })
-
+    const createdAt = new Date()
+console.log(cart);
     const { register, handleSubmit, formState: { errors } } = useForm()
     const onSubmit = data => {
-        dispatch(AddOrders({...data, cart}))
+        
+        dispatch(AddOrders({...data, cart, createdAt: createdAt}))
+        setTimeout(() => {
+            navigate(`/checkout`)
+        }, 1000);
     }
     return (
         <div>
@@ -150,7 +158,10 @@ const CartPage = () => {
                                                         </div>
                                                     </div>
                                                     <div className="mt-3">
+                                                       
                                                         <button className="btn_checkout flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Comfirm</button>
+                                                      
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
