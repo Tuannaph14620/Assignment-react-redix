@@ -1,41 +1,43 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
+
+const carts = JSON.parse(localStorage.getItem('cart'))
 const cartSlice = createSlice({
-  name: "cart",
-  initialState: {
-    value: [],
-    totalQuantity: 0
-  },
-  reducers: {
-    addItemToCart(state, action) {
-      // state.totalQuantity++;
-      const newItem = action.payload;
-      console.log("dd", newItem);
-      const existingItem = state.value.find((item) => item.productId  === newItem.productId);
-      if (!existingItem) {
-        state.value.push(
-          newItem
-        );
-        localStorage.getItem('cart', JSON.stringify(newItem))
-      } else {
-        existingItem.quantity += newItem.quantity;
-      }
-      console.log("state",state.value);
+    name: 'cart',
+    initialState: {
+        value: carts
     },
-    
-    removeItemFromCart(state, action) {
-      // state.totalQuantity--;
-      const id = action.payload;
-      // const existingItem = state.items.find((item) => item.id === id);
-      // if (existingItem.quantity === 1) {
-      state.items = state.items.filter((item) => item.id !== id);
-      // } else {
-      //   existingItem.quantity--;
-      //   existingItem.totalPrice -= existingItem.price;
-      // }
+    reducers: {
+        addCarts(state, actions) {
+            const newCart = actions.payload
+            const isCart = state.value.find(item => item.productId === newCart.productId)
+            if (!isCart) {
+                state.value.push(newCart)
+            } else {
+                isCart.quantity += newCart.quantity
+            }
+            // console.log(state.value);
+        },
+        increaseQty(state, actions) {
+           state.value.find(item => item.productId == actions.payload).quantity++;
+        },
+        decreaseQty(state, actions) {
+            const currentProduct = state.value.find(item => item.productId == actions.payload);
+            currentProduct.quantity--;
+            if (currentProduct.quantity < 1) {
+                const confirm = window.confirm("Bạn có muốn xóa sản phẩm này không ?");
+                if (confirm) {
+                    state.value = state.value.filter(item => item.productId != actions.payload)
+                }
+            }
+        },
+        removeItemInCart(state, actions) {
+            const confirm = window.confirm("Bạn có muốn xóa sản phẩm này không ?");
+            if (confirm) {
+                state.value = state.value.filter(item => item.productId != actions.payload)
+            }
+        }
     }
-  }
-});
-
-export const { addItemToCart, removeItemFromCart } = cartSlice.actions;
-export default cartSlice.reducer;
+})
+export const { addCarts, increaseQty, decreaseQty, removeItemInCart } = cartSlice.actions
+export default cartSlice.reducer

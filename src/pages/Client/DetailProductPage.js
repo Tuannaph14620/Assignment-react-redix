@@ -4,10 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import { ListCateProduct, listOneProduct } from '../../api/product'
-import { addItemToCart } from '../../features/CartSlice'
+import { addCarts, addItemToCart } from '../../features/CartSlice'
 import { CateProduct, listProductsOne } from '../../features/productSlice'
-import { addToCart } from '../../utils/cart'
-
+import Slider from "react-slick"
 const DetailProductPage = () => {
   const product = useSelector(data => data.product.value)
   const erorrQuantity = () => toast.error('Bạn vui lòng chọn số lượng!')
@@ -20,7 +19,6 @@ const DetailProductPage = () => {
   useEffect(() => {
     const getOne = async () => {
       const { data } = await listOneProduct(id)
-      console.log(data.products);
       setGetProduct(data)
     }
     getOne()
@@ -33,13 +31,47 @@ const DetailProductPage = () => {
       erorrQuantity()
     } else {
       const datas = { ...data, price: +data.price, quantity: +quantity }
-      dispatch(addToCart(datas))
+      dispatch(addCarts(datas))
       errorSuccess()
       navigate('/cart')
-    
+
     }
   }
-
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 3,
+    responsive: [
+        {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                dots: true
+            }
+        },
+        {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2
+            }
+        },
+        {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+        }
+        // You can unslick at a given breakpoint now by adding:
+        // settings: "unslick"
+        // instead of a settings object
+    ]
+}
   return (
     <main className=" px-10"> <ToastContainer />
       <section>
@@ -49,8 +81,8 @@ const DetailProductPage = () => {
               <img src={`${getProduct.img}`} width="500px" height="500px" alt />
             </div>
             <div className="mt-4 lg:mt-0 lg:row-span-4">
-              <h2 className="sr-only">Product information</h2>
-              <p className="text-3xl text-gray-900">{Number(getProduct.price).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</p>
+              <h2 className="text-xl font-bold text-gray-900">{getProduct.name}</h2>
+              <p className="text-lg text-gray-900 text-left">Giá sản phẩm:{Number(getProduct.price).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</p>
               <div className="mt-6">
                 <h3 className="sr-only">Reviews</h3>
                 <div className="flex items-center">
@@ -79,10 +111,16 @@ const DetailProductPage = () => {
                   <a href="#" className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">117 reviews</a>
                 </div>
               </div>
-              <form className="mt-10">
+              <div className="mt-10">
                 {/* quantity */}
-                <div className="mt-10 mr-52"> Số lượng: <br />
-                  <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} className="quantity" min={1} name="quantity" style={{ marginTop: 10, padding: '5px 5px', width: 150 }} id="quantity" /> </div>
+                  <div class="div-group text-left">
+                    <label>Quantity: </label>
+                    <div class="input-group" >
+                      <button id="down" class="border-2 p-1" onClick={() => setQuantity(quantity - 1)}><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg></button>
+                      <input type="text" id="myNumber" value={quantity} onChange={(e) => setQuantity(e.target.value)} className="quantity p-1 text-xl " min={1} style={{ marginTop: 10, padding: '5px 5px', textAlign:"center", width: 40 }} /> 
+                      <button id="up" class="border-2 p-1" onClick={() => setQuantity(quantity + 1)}><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg></button>
+                  </div>
+                </div>
                 {/* Sizes */}
                 <div className="mt-10">
                   <div className="flex items-center justify-between">
@@ -101,6 +139,8 @@ const DetailProductPage = () => {
                           </svg>
                         </div>
                       </label>
+                      {/* Active: "ring-2 ring-indigo-500" */}
+
                       <label className="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer">
                         <input type="radio" name="size-choice" defaultValue="XS" className="sr-only" aria-labelledby="size-choice-1-label" />
                         <p id="size-choice-1-label">XS</p>
@@ -144,27 +184,25 @@ const DetailProductPage = () => {
                   name: getProduct.name,
                   img: getProduct.img,
                   price: getProduct.price
-                },e)} id="btnAddToCart" className="mt-10 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add to bag</button>
-              </form>
+                }, e)} id="btnAddToCart" className="mt-10 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add to bag</button>
+              </div>
             </div>
           </div>
           <div>
             <h2 className="py-4 text-blue-900 font-bold text-2xl uppercase">Sản phẩm liên quan</h2>
-            <div className="news">
-              <div className="flex flex-wrap justify-between  gap-px ">
-                {product?.map(item => {
-                  return <div className="col w-1/6 p-4">
+            <div className="news justify-center ">
+              <Slider {...settings} >
+                {product?.map(item => { 
+                  return <div className="col w-1/6 p-4 ">
                     <a href="/#/news/${post.id}"><img className="w-full" src={`${item.img}`} /></a>
                     <a href="/news/${post.id}">
                       <h3 className="py-2 font-bold text-blue-900">{item.name}</h3>
                     </a>
                     <p>{Number(item.price).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</p>
                   </div>
-
-
                 })}
 
-              </div>
+              </Slider>
             </div></div>
 
         </div>

@@ -1,37 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { toast, ToastContainer } from 'react-toastify'
-import { decreaseQty, increaseQty, removeItemInCart } from '../../../utils/cart'
+import { decreaseQty, increaseQty, removeItemInCart } from '../../../features/CartSlice'
 
 const CartPage = () => {
-    const notify = ()=> toast('Xóa thành công!')
-    const [carts, setCarts] = useState([])
-    let cart = []
-    cart = JSON.parse(localStorage.getItem('cart'))
-    useEffect(() => {
-        setCarts(cart)
-    }, []);
-    console.log("aaa", carts);
+    const dispatch = useDispatch()
+    const cart = useSelector(data => data.cart.value)
+    useEffect(()=>{
+        localStorage.setItem('cart', JSON.stringify(cart))
+    },[cart])
     let totalProducts = 0
     cart.forEach(item => {
         totalProducts += Number(item.price) * Number(item.quantity)
-    })
-    const btns = document.querySelectorAll('.btn')
-    btns.forEach(btn => {
-        const id = btn.dataset.productId
-        console.log(id);
-        btn.addEventListener('click', () => {
-            if (btn.classList.contains('btn-increase')) {
-                console.log(1);
-                increaseQty(id, () => setCarts(cart))
-            } else if (btn.classList.contains('btn-decrease')) {
-                decreaseQty(id, () => setCarts(cart))
-            } else {
-                removeItemInCart(id, () => {
-                    setCarts(cart)
-                })
-            }
-        })
     })
     return (
         <div>
@@ -48,7 +28,7 @@ const CartPage = () => {
                                         <div className="mt-8">
                                             <div className="flow-root">
                                                 <ul role="list" className="-my-6 divide-y divide-gray-200">
-                                                    {carts?.map((item, index) => {
+                                                    {cart?.map((item, index) => {
                                                         return <li key={index} className="py-6 flex">
                                                             <div className="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
                                                                 <img src={`${item.img}`} alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." className="w-full h-full object-center object-cover" />
@@ -59,15 +39,15 @@ const CartPage = () => {
                                                                         <h3>
                                                                             <a href="#"> {item.name} </a>
                                                                         </h3>
-                                                                        <p className="ml-4">{Number(item.price).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</p>
+                                                                        <p className="ml-4">{(Number(item.price) * Number(item.quantity) ).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</p>
                                                                     </div>
                                                                 </div>
                                                                 <div className="flex-1 flex items-end justify-between text-sm">
                                                                     <p className="text-gray-500">Quantity: {item.quantity}</p>
-                                                                    <button data-id={`${item.productId}`} className="btn btn-increase border-2 p-1  text-black">+</button>
-                                                                    <button data-id={`${item.productId}`} className="btn btn-decrease border-2 p-1  text-black">-</button>
+                                                                    <button onClick={()=> dispatch(increaseQty(item.productId))} className="btn btn-increase border-2 p-1  text-black">+</button>
+                                                                    <button onClick={()=> dispatch(decreaseQty(item.productId))} className="btn btn-decrease border-2 p-1  text-black">-</button>
                                                                     <div className="flex">
-                                                                        <button data-id={`${item.productId}`} type="button" className="btn font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
+                                                                        <button onClick={()=> dispatch(removeItemInCart(item.productId))} type="button" className="btn font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
