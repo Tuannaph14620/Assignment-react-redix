@@ -43,7 +43,7 @@ export const removeItemInCart = (id, next) => {
     console.log(id);
     const confirm = window.confirm("Bạn có muốn xóa sản phẩm này không?");
     if (confirm) {
-        cart = cart.filter(item => item.id !== Number(id))
+        cart = cart.filter(item => item.productId !== Number(id))
     }
     localStorage.setItem('cart', JSON.stringify(cart));
     next();
