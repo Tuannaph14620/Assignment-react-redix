@@ -1,11 +1,11 @@
 
 import { Navigate } from 'react-router-dom'
-const PrivateRouter = () => {
-  const isAdmin = localStorage.getItem("user")
+const PrivateRouter = (props) => {
+  const isAdmin = JSON.parse(localStorage.getItem("user"))
   if (!isAdmin) {  
     return <Navigate to='/signin'/>
   }
-  return <Navigate to='/admin'/>
+  return props.children
 }
 
 export default PrivateRouter

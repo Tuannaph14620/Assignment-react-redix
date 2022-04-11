@@ -1,3 +1,4 @@
+import { data } from 'autoprefixer'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
@@ -6,8 +7,10 @@ import Navbar from './Navbar'
 
 const HeaderIndex = () => { 
   const quantityCart = useSelector(data => data.cart.value?.length)
-  console.log("quan",quantityCart);
-
+  const isUser = useSelector(data => data.user.value)
+  const dispatch = useDispatch()
+  // console.log("user", isUser);
+ 
   return (
 <div className="bg-white">
   <div className="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true"> 
@@ -74,9 +77,9 @@ const HeaderIndex = () => {
           </div>
           <div className="ml-auto flex items-center">
             <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-              <a href="/signin" className="text-sm font-medium text-gray-700 hover:text-gray-800">Đăng nhập</a>
+              {isUser ? <button onClick={()=> dispatch(Logout())} className="text-sm font-medium text-gray-700 hover:text-gray-800">Đăng xuất</button> : <NavLink to="/signin" className="text-sm font-medium text-gray-700 hover:text-gray-800">Đăng nhập</NavLink>}
               <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-              <a href="/signup" className="text-sm font-medium text-gray-700 hover:text-gray-800">Tạo tài khoản</a>
+              <NavLink to="/signup" className="text-sm font-medium text-gray-700 hover:text-gray-800">Tạo tài khoản</NavLink>
             </div>
             <div className="hidden lg:ml-8 lg:flex">
               <a href="#" className="text-gray-700 hover:text-gray-800 flex items-center">

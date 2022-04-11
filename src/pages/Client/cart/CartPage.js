@@ -10,7 +10,7 @@ import { AddOrders } from '../../../features/OrderSlice'
 const CartPage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    
+    const notify = ()=> toast('Bạn đã đặt hàng thành công! Chúng tôi sẽ liên hệ lại sớm nhất với bạn để xác nhận đơn hàng!')
     const cart = useSelector(data => data.cart.value)
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart))
@@ -25,9 +25,10 @@ console.log(cart);
     const onSubmit = data => {
         
         dispatch(AddOrders({...data, cart, createdAt: createdAt}))
+        notify()
         setTimeout(() => {
-            navigate(`/checkout`)
-        }, 1000);
+            navigate('/product')
+        }, 4000);
     }
     return (
         <div>
