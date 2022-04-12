@@ -6,14 +6,15 @@ import { AddContact, ListContact } from "../api/contact";
 export const AddContacts = createAsyncThunk(
     "contact/addContact",
     async (user)=>{
-        const {data} = AddContact(user)
+        const {data} = await AddContact(user)
         return data
     }
 )
 export const ListContacts = createAsyncThunk(
     "contact/listContact",
     async ()=>{
-        const {data} = ListContact()
+        const {data} = await ListContact()
+        console.log("data", data);
         return data
     }
 )

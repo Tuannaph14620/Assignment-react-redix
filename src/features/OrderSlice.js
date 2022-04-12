@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addOrder, listOneOrder, listOrder } from "../api/order";
+import { addOrder, listOneOrder, listOrder, removeOrder } from "../api/order";
 
 export const AddOrders = createAsyncThunk(
     "order/addOrder",
@@ -10,9 +10,23 @@ export const AddOrders = createAsyncThunk(
     }
 )
 export const ListOneOrders = createAsyncThunk(
-    "order/listOrder",
+    "order/listOneOrder",
     async (id)=>{
         const {data} = await listOneOrder(id)
+        return data
+    }
+)
+export const RemoveOrders = createAsyncThunk(
+    "order/removeOrder",
+    async (id)=>{
+        const {data} = await removeOrder(id)
+        return data
+    }
+)
+export const ListOrders = createAsyncThunk(
+    "order/listOrder",
+    async ()=>{
+        const {data} = await listOrder()
         return data
     }
 )
@@ -29,6 +43,12 @@ const OrderSlice = createSlice({
         builder.addCase(ListOneOrders.fulfilled,(state, action)=>{
             state.value = action.payload
         })
+        builder.addCase(ListOrders.fulfilled,(state, action)=>{
+            state.value = action.payload
+        })
+        builder.addCase(RemoveOrders.fulfilled, (state, action)=>{
+            state.value = state.value.filter(item=> item.id !== action.meta.arg)
+        }) 
     }
 })
 

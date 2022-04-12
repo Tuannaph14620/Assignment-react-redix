@@ -8,9 +8,10 @@ const ContactPage = () => {
     const dispatch = useDispatch()
     const notify = () => toast('Chúng tôi đã nhận được ý kiến góp ý của bạn! Xin cảm ơn')
     const { register, handleSubmit, reset } = useForm()
+    const createdAt = new Date()
     const onSubmit = data => {
         console.log(1);
-        dispatch(AddContacts(data))
+        dispatch(AddContacts({...data, createdAt: createdAt}))
         notify()
         reset()
     }

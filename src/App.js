@@ -23,6 +23,9 @@ import EditNew from './pages/Admin/New/ListNew';
 import CartPage from './pages/Client/cart/CartPage';
 import ListAllNew from './pages/Client/post/ListAllNew';
 import ContactPage from './pages/Client/ContactPage';
+import ListAllOrder from './pages/Admin/Orders/ListAllOrder';
+import ListAllContact from './pages/Admin/Contact/ListAllContac';
+import ListDetailOrder from './pages/Admin/Orders/ListDetailOrder';
 function App() {
   return (
     <div className="App">
@@ -43,7 +46,7 @@ function App() {
         </Route>
         <Route path='admin' element={<PrivateRouter><AdminLayout/></PrivateRouter>  }>
           <Route index element={<Navigate to="dashboard"/>}/>
-          <Route path='dashboard' element={<h1>Dashboard</h1>}/>
+          <Route path='dashboard' element={<img className='w-full' src='https://res.cloudinary.com/dl8w6p4sf/image/upload/v1649743622/9964853932064717632_hlwgiu.jpg'/>}/>
           <Route path='category'>
             <Route index element={<ListCategory/>}/>
             <Route path='add' element={<AddCategory/>}/>
@@ -63,6 +66,17 @@ function App() {
             <Route index element={<ListNew/>}/>
             <Route path='add' element={<AddNew/>}/>
             <Route path=':id/edit' element={<EditNew/>}/>
+          </Route>
+          <Route path='order'>
+            <Route index element={<ListAllOrder/>}/>
+            <Route path=':id/detail' element={<ListDetailOrder/>}/>
+            {/* <Route path='add' element={<AddNew/>}/>
+            <Route path=':id/edit' element={<EditNew/>}/> */}
+          </Route>
+          <Route path='contact'>
+            <Route index element={<ListAllContact/>}/>
+            {/* {/* <Route path='add' element={<AddNew/>}/> */}
+            
           </Route>
         </Route>
         

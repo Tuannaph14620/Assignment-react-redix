@@ -79,7 +79,30 @@ const SlidebarAdmin = () => {
             </ul>
           </div>
         </li>
-
+        <li className="nav-item">
+          <a className="nav-link" data-bs-toggle="collapse" href="#form-element1" aria-expanded="false" aria-controls="form-element1">
+            <i className="menu-icon mdi mdi-card-text-outline" />
+            <span className="menu-title">Đơn hàng</span>
+            <i className="menu-arrow" />
+          </a>
+          <div className="collapse" id="form-element1">
+            <ul className="nav flex-column sub-menu">
+              <li className="nav-item"><NavLink className="nav-link" to="/admin/order">Danh sách đơn hàng</NavLink></li>
+            </ul>
+          </div>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" data-bs-toggle="collapse" href="#form-element2" aria-expanded="false" aria-controls="form-element2">
+            <i className="menu-icon mdi mdi-card-text-outline" />
+            <span className="menu-title">Y kiến khách hàng</span>
+            <i className="menu-arrow" />
+          </a>
+          <div className="collapse" id="form-element2">
+            <ul className="nav flex-column sub-menu">
+              <li className="nav-item"><NavLink className="nav-link" to="/admin/contact">Danh sách phản hồi</NavLink></li>
+            </ul>
+          </div>
+        </li>
         <li className="nav-item">
           <NavLink className="nav-link" to='/'>
             <span className="menu-title">Xem Trang Website</span>
