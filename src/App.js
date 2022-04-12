@@ -42,7 +42,6 @@ function App() {
           <Route path='cart' element={<CartPage/>} />
           <Route path='new' element={<ListAllNew/>} />
           <Route path='contact' element={<ContactPage/>} />
-
         </Route>
         <Route path='admin' element={<PrivateRouter><AdminLayout/></PrivateRouter>  }>
           <Route index element={<Navigate to="dashboard"/>}/>

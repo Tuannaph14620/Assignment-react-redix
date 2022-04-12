@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import { ListCateProduct, listOneProduct } from '../../api/product'
 import { addCarts, addItemToCart } from '../../features/CartSlice'
@@ -194,10 +194,10 @@ const DetailProductPage = () => {
               <Slider {...settings} >
                 {product?.map(item => { 
                   return <div className="col w-1/6 p-4 ">
-                    <a href="/#/news/${post.id}"><img className="w-full" src={`${item.img}`} /></a>
-                    <a href="/news/${post.id}">
+                    <NavLink to={`/product/${item.id}/${item.categoryId}`}><img className="w-full" src={`${item.img}`} /></NavLink>
+                    <NavLink to={`/product/${item.id}/${item.categoryId}`}>
                       <h3 className="py-2 font-bold text-blue-900">{item.name}</h3>
-                    </a>
+                    </NavLink>
                     <p>{Number(item.price).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</p>
                   </div>
                 })}

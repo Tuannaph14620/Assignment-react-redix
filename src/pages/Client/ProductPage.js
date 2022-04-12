@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { getProductA_Z } from '../../api/product'
 import { listCategory } from '../../features/categorySlice'
 import { CateProduct, listProducts, SearchProduct, SortProductA_Z, SortProductNew, SortProductZ_A } from '../../features/productSlice'
@@ -51,6 +52,7 @@ const ProductPage = () => {
               <h2 className="font-bold text-xl">Danh mục sản phẩm</h2>
               <div>
                 <select onChange={()=>handleSortCate()} className="form-select appearance-none w-48 px-3 py-1.5 font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out mt-3">
+                  <option>-- Danh mục --</option>
                   {category?.map((item, index)=>{
                     return <option key={index}  value={`${item.id}`}>{item.nameCate}</option> 
                   })}
@@ -82,13 +84,13 @@ const ProductPage = () => {
         <h2 className="sr-only">Products</h2>
         <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {product?.map((item, index) => {
-            return <a key={index} href={`/product/${item.id}/${item.categoryId}`} className="group">
+            return <NavLink key={index} to={`/product/${item.id}/${item.categoryId}`} className="group">
               <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                 <img src={`${item.img}`} alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." className="w-full h-full object-center object-cover group-hover:opacity-75" />
               </div>
               <h3 className="mt-4 text-sm text-gray-700">{item.name}</h3>
               <p className="mt-1 text-lg font-medium text-gray-900">{Number(item.price).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</p>
-            </a>
+            </NavLink>
           })}
         </div>
       </div>
