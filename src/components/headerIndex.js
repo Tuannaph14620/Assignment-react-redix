@@ -72,7 +72,7 @@ const HeaderIndex = () => {
                 </div>
               </div>
               <a href="#" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Giới Thiệu</a>
-              <a href="#" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Liên hệ</a>
+              <a href="/contact" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Liên hệ</a>
               {isUser.length === 0 ? "" : <a href="/admin" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Admin</a> }
             </div>
           </div>
