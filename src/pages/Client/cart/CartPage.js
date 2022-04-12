@@ -67,6 +67,9 @@ console.log(cart);
                                                                         <button onClick={() => dispatch(removeItemInCart(item.productId))} type="button" className="btn font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
                                                                     </div>
                                                                 </div>
+                                                                <div className='flex items-end justify-between text-sm' >
+                                                                    <p>Size: {item.size}</p>
+                                                                </div>
                                                             </div>
                                                         </li>
                                                     })}

@@ -9,13 +9,15 @@ import { CateProduct, listProductsOne } from '../../features/productSlice'
 import Slider from "react-slick"
 const DetailProductPage = () => {
   const product = useSelector(data => data.product.value)
-  const erorrQuantity = () => toast.error('Bạn vui lòng chọn số lượng!')
-  const errorSuccess = () => toast.success('Thêm sản phẩm vào giỏ hàng thành công !')
+  const erorrSize = () => toast('Bạn vui lòng chọn size!')
+  const errorSuccess = () => toast('Thêm sản phẩm vào giỏ hàng thành công !')
   const [getProduct, setGetProduct] = useState([])
   const [quantity, setQuantity] = useState(1)
+  const [S, setS] = useState()
   const { id, cate } = useParams()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  // console.log("S",S);
   useEffect(() => {
     const getOne = async () => {
       const { data } = await listOneProduct(id)
@@ -24,13 +26,14 @@ const DetailProductPage = () => {
     getOne()
 
     dispatch(CateProduct(cate))
-  }, [])
+  }, [getProduct])
   const HandleCart = (data, e) => {
     e.preventDefault()
-    if (quantity == 0) {
-      erorrQuantity()
+    if (S === "") {
+      console.log("1", 1);
+      erorrSize()
     } else {
-      const datas = { ...data, price: +data.price, quantity: +quantity }
+      const datas = { ...data, price: +data.price, size: S, quantity: +quantity }
       dispatch(addCarts(datas))
       errorSuccess()
       navigate('/cart')
@@ -44,34 +47,34 @@ const DetailProductPage = () => {
     slidesToShow: 6,
     slidesToScroll: 3,
     responsive: [
-        {
-            breakpoint: 1024,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
-                dots: true
-            }
-        },
-        {
-            breakpoint: 600,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2
-            }
-        },
-        {
-            breakpoint: 480,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-            }
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
         }
-        // You can unslick at a given breakpoint now by adding:
-        // settings: "unslick"
-        // instead of a settings object
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+      // You can unslick at a given breakpoint now by adding:
+      // settings: "unslick"
+      // instead of a settings object
     ]
-}
+  }
   return (
     <main className=" px-10"> <ToastContainer />
       <section>
@@ -113,71 +116,27 @@ const DetailProductPage = () => {
               </div>
               <div className="mt-10">
                 {/* quantity */}
-                  <div class="div-group text-left">
-                    <label>Quantity: </label>
-                    <div class="input-group" >
-                      <button id="down" class="border-2 p-1" onClick={() => setQuantity(quantity - 1)}><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg></button>
-                      <input type="text" id="myNumber" value={quantity} onChange={(e) => setQuantity(e.target.value)} className="quantity p-1 text-xl " min={1} style={{ marginTop: 10, padding: '5px 5px', textAlign:"center", width: 40 }} /> 
-                      <button id="up" class="border-2 p-1" onClick={() => setQuantity(quantity + 1)}><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg></button>
+                <div class="div-group text-left">
+                  <label>Quantity: </label>
+                  <div class="input-group" >
+                    <button id="down" class="border-2 p-1" onClick={() => setQuantity(quantity - 1)}><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg></button>
+                    <input type="text" id="myNumber" value={quantity} onChange={(e) => setQuantity(e.target.value)} className="quantity p-1 text-xl " min={1} style={{ marginTop: 10, padding: '5px 5px', textAlign: "center", width: 40 }} />
+                    <button id="up" class="border-2 p-1" onClick={() => setQuantity(quantity + 1)}><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg></button>
                   </div>
                 </div>
                 {/* Sizes */}
                 <div className="mt-10">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center">
                     <h3 className="text-sm text-gray-900 font-medium">Size</h3>
-                    <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">Size guide</a>
+                    <select value={S} onChange={(e) => setS(e.target.value)} className='border-2 px-3 border-gray-500 ml-5'>
+                      <option>--Size--</option>
+                      <option value={'S'}>S</option>
+                      <option value={'M'}>M</option>
+                      <option value={'L'}>L</option>
+                      <option value={'XL'}>XL</option>
+                      <option value={'XXL'}>XXL</option>
+                    </select>
                   </div>
-                  <fieldset className="mt-4">
-                    <legend className="sr-only">Choose a size</legend>
-                    <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
-                      <label className="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-gray-50 text-gray-200 cursor-not-allowed">
-                        <input type="radio" name="size-choice" defaultValue="XXS" disabled className="sr-only" aria-labelledby="size-choice-0-label" />
-                        <p id="size-choice-0-label">XXS</p>
-                        <div aria-hidden="true" className="absolute -inset-px rounded-md border-2 border-gray-200 pointer-events-none">
-                          <svg className="absolute inset-0 w-full h-full text-gray-200 stroke-2" viewBox="0 0 100 100" preserveAspectRatio="none" stroke="currentColor">
-                            <line x1={0} y1={100} x2={100} y2={0} vectorEffect="non-scaling-stroke" />
-                          </svg>
-                        </div>
-                      </label>
-                      {/* Active: "ring-2 ring-indigo-500" */}
-
-                      <label className="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer">
-                        <input type="radio" name="size-choice" defaultValue="XS" className="sr-only" aria-labelledby="size-choice-1-label" />
-                        <p id="size-choice-1-label">XS</p>
-                        <div className="absolute -inset-px rounded-md pointer-events-none" aria-hidden="true" />
-                      </label>
-                      <label className="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer">
-                        <input type="radio" name="size-choice" defaultValue="S" className="sr-only" aria-labelledby="size-choice-2-label" />
-                        <p id="size-choice-2-label">S</p>
-                        <div className="absolute -inset-px rounded-md pointer-events-none" aria-hidden="true" />
-                      </label>
-                      <label className="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer">
-                        <input type="radio" name="size-choice" defaultValue="M" className="sr-only" aria-labelledby="size-choice-3-label" />
-                        <p id="size-choice-3-label">M</p>
-                        <div className="absolute -inset-px rounded-md pointer-events-none" aria-hidden="true" />
-                      </label>
-                      <label className="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer">
-                        <input type="radio" name="size-choice" defaultValue="L" className="sr-only" aria-labelledby="size-choice-4-label" />
-                        <p id="size-choice-4-label">L</p>
-                        <div className="absolute -inset-px rounded-md pointer-events-none" aria-hidden="true" />
-                      </label>
-                      <label className="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer">
-                        <input type="radio" name="size-choice" defaultValue="XL" className="sr-only" aria-labelledby="size-choice-5-label" />
-                        <p id="size-choice-5-label">XL</p>
-                        <div className="absolute -inset-px rounded-md pointer-events-none" aria-hidden="true" />
-                      </label>
-                      <label className="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer">
-                        <input type="radio" name="size-choice" defaultValue="2XL" className="sr-only" aria-labelledby="size-choice-6-label" />
-                        <p id="size-choice-6-label">2XL</p>
-                        <div className="absolute -inset-px rounded-md pointer-events-none" aria-hidden="true" />
-                      </label>
-                      <label className="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 bg-white shadow-sm text-gray-900 cursor-pointer">
-                        <input type="radio" name="size-choice" defaultValue="3XL" className="sr-only" aria-labelledby="size-choice-7-label" />
-                        <p id="size-choice-7-label">3XL</p>
-                        <div className="absolute -inset-px rounded-md pointer-events-none" aria-hidden="true" />
-                      </label>
-                    </div>
-                  </fieldset>
                 </div>
                 <button onClick={(e) => HandleCart({
                   productId: getProduct.id,
@@ -192,7 +151,7 @@ const DetailProductPage = () => {
             <h2 className="py-4 text-blue-900 font-bold text-2xl uppercase">Sản phẩm liên quan</h2>
             <div className="news justify-center ">
               <Slider {...settings} >
-                {product?.map(item => { 
+                {product?.map(item => {
                   return <div className="col w-1/6 p-4 ">
                     <NavLink to={`/product/${item.id}/${item.categoryId}`}><img className="w-full" src={`${item.img}`} /></NavLink>
                     <NavLink to={`/product/${item.id}/${item.categoryId}`}>
