@@ -13,7 +13,7 @@ const DetailProductPage = () => {
   const errorSuccess = () => toast('Thêm sản phẩm vào giỏ hàng thành công !')
   const [getProduct, setGetProduct] = useState([])
   const [quantity, setQuantity] = useState(1)
-  const [S, setS] = useState()
+  const [S, setS] = useState('')
   const { id, cate } = useParams()
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -26,11 +26,11 @@ const DetailProductPage = () => {
     getOne()
 
     dispatch(CateProduct(cate))
-  }, [getProduct])
+  }, [])
   const HandleCart = (data, e) => {
     e.preventDefault()
     if (S === "") {
-      console.log("1", 1);
+      
       erorrSize()
     } else {
       const datas = { ...data, price: +data.price, size: S, quantity: +quantity }
@@ -129,7 +129,7 @@ const DetailProductPage = () => {
                   <div className="flex items-center">
                     <h3 className="text-sm text-gray-900 font-medium">Size</h3>
                     <select value={S} onChange={(e) => setS(e.target.value)} className='border-2 px-3 border-gray-500 ml-5'>
-                      <option>--Size--</option>
+                      <option value=''>--Size--</option>
                       <option value={'S'}>S</option>
                       <option value={'M'}>M</option>
                       <option value={'L'}>L</option>
