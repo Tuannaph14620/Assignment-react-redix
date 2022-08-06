@@ -19,9 +19,9 @@ const EditProduct = () => {
         dispatch(listCategory())
         const getOne = async () =>{
             const {data} = await listOneProduct(id)
+            console.log("data",data);
             reset(data)
             setImg(data.img)
-            
         }
         getOne()
     }, []);
